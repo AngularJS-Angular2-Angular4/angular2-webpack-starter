@@ -3,20 +3,14 @@ import { FormsModule }                  from '@angular/forms';
 import { CommonModule }                 from '@angular/common';
 import { ContactUsComponent }           from './contact-us/contact-us.component';
 import { LiveChatComponent }            from './contact-us/live-chat.component';
-import { FooterComponent }              from './footer.component';
-import { NavBarComponent }              from './navbar.component';
 
 @NgModule({
     imports: [ FormsModule,
     CommonModule],
     exports: [ ContactUsComponent,
-                LiveChatComponent,
-                FooterComponent,
-                NavBarComponent ],
+                LiveChatComponent ],
     declarations: [ ContactUsComponent,
-                    LiveChatComponent,
-                    FooterComponent,
-                    NavBarComponent ],
+                    LiveChatComponent ],
     providers: []
 })
 export class SharedModule { }

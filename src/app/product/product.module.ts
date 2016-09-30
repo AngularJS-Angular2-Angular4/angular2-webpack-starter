@@ -5,6 +5,7 @@ import { ProductDescriptionComponent }  from './product-desc.component';
 import { ProductPricingComponent }      from './product-pricing.component';
 import { CheckmarkPipe }                from '../common/pipes/checkmark.pipe';
 import { ProductTermSelectionComponent } from './product-term-selection.component';
+import { ProductFeaturesComponent }     from './product-features.component';
 
 @NgModule({
     imports: [ FormsModule,
@@ -12,11 +13,13 @@ import { ProductTermSelectionComponent } from './product-term-selection.componen
     exports: [ ProductDescriptionComponent,
                 ProductPricingComponent,
                 ProductTermSelectionComponent,
-                CheckmarkPipe ],
+                CheckmarkPipe,
+                ProductFeaturesComponent ],
     declarations: [ ProductDescriptionComponent ,
                     ProductPricingComponent,
-                ProductTermSelectionComponent,
-                    CheckmarkPipe ],
+                    ProductTermSelectionComponent,
+                    CheckmarkPipe,
+                    ProductFeaturesComponent ],
     providers: [],
 })
 export class ProductModule { }

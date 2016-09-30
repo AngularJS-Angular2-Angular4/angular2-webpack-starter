@@ -1,0 +1,64 @@
+html.cyclops body{
+	background-color: #fff;
+}
+html.cyclops body h1{
+	font-weight: 300;
+	font-size: 41px;
+}
+html.cyclops body .navbar-static-top .navbar-account .dropdown > a{
+	background: #c1c1c1;
+	color: #282828;
+	border-radius: 50%;
+	margin: 5px;
+	padding: 10px;
+}
+html.cyclops .navbar-inverse .navbar-account .dropdown .cyclops-icon use{
+	fill: #282828;
+}
+html.cyclops body table thead th{
+	font-size: 14px;
+}
+html.cyclops body table .cyclops-icon,
+html.cyclops body table .cyclops-icon.md{
+	fill:rgba(65, 184, 52, 1);
+	width:24px;
+	height:24px;
+}
+html.cyclops body table td,
+html.cyclops body table th{
+	text-align:center;
+}
+html.cyclops body table tbody td.active{
+	background: #3cac30;
+	color:#fff;
+}
+html.cyclops body table tbody tr:last-child td{
+	border-bottom: 1px solid #ddd;
+} 
+html.cyclops .nav-tabs{
+	margin-bottom:10px;
+	text-align: center;
+}
+html.cyclops .nav-tabs li a{
+	padding:15px;
+}
+html.cyclops .nav-tabs li{
+	display: inline-block;
+	float: none;
+}
+html.cyclops .navbar-local{
+	margin-bottom: 10px;
+	border: 0;
+}
+html.cyclops .navbar-local .navbar-nav{
+	margin-left: 0;
+	float: none;
+}
+html.cyclops .navbar-local .navbar-nav li{
+
+}
+html.cyclops .navbar-local .navbar-nav li a{
+	border:1px solid #e0e0e0;
+	padding:6px 50px 6px 52px;
+	border-radius: 0;
+}

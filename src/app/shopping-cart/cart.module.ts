@@ -11,7 +11,7 @@ import { CartDetailComponent }        from './cart-detail.component';
     exports: [ CartSummaryComponent,
                 CartDetailComponent ],
     declarations: [ CartSummaryComponent,
-                    CArtDetailComponent ],
+                    CartDetailComponent ],
     providers: []
 })
 export class CartModule { }

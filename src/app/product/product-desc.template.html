@@ -1,34 +1,22 @@
-<!--<p>
-      This will hold product description
-</p>
-<hr> {{ (products | async)?.variants | json }}
--->
-<div class="row">
-      <div class="col">
-            <div class="card card-block">
-                  <h3 class="card-title">SD WAN</h3>
-                  <div class="card-text" [innerHTML]="(products | async)?.description"></div>
-            </div>
-      </div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <ul role="navigation" class="nav nav-tabs">
+        <li class="active"><a href="#link-desc">Description</a></li>
+        <li><a href="#link-feat">Features</a></li>
+        <li><a href="#link-pric">Pricing</a></li>
+      </ul>
+    </div>
+  </div>
 </div>
-<div class="row">
-      <div class="col">
-            <table class="table">
-                  <thead>
-                        <tr>
-                              <th>Name</th>
-                              <th>Vendor</th>
-                              <th>Service Plan</th>
-                              <th>Security Package</th>
-                  </thead>
-                  <tbody *ngFor="let variant of (products | async)?.variants">
-                        <tr>
-                              <td>{{variant.name}}</td>
-                              <td>{{variant.service_vendor}}</td>
-                              <td>{{variant.service_plan}}</td>
-                              <td>{{variant.ha_security_pkg | checkmark}}</td>
-                        </tr>
-                  </tbody>
-            </table>
+<div class="card card-success card-block">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 text-center">
+          <h1 id="link-desc" class="card-title">Description</h1>
+          <p class="card-text">Protect your data across the public Internet with desktop virtual private network (VPN) software via a self-service, persistent network-to-network tunnel</p>
+          <p class="card-text">IPsec offers the ability to create persistent, secure tunnels across a public network. The CenturyLink Cloud supports connections between networks (“gateway to gateway”) as well as connections between users on untrusted networks and their secure applications ("host to gateway"). Users can quickly provision a site to site VPN via the self-service Control Portal.</p>
       </div>
+    </div>
+  </div>
 </div>

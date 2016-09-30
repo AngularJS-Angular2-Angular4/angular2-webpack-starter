@@ -1,8 +1,8 @@
 <div class="container">
-    {{ (user | async) | json }}
-    <br>
-    <button *ngIf="(user | async)?.id >0" (click)="addUserInfo()">Add Info</button>
+
+    <!--button *ngIf="(user | async)?.id >0" (click)="addUserInfo()">Add Info</button-->
     <!-- <button *ngIf="(user | async)?.id >0" (click)="logout()">Logout</button> -->
     <product-description></product-description>
+    <product-features></product-features>
     <product-pricing></product-pricing>
 </div>

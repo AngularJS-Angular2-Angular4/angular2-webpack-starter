@@ -1,55 +1,41 @@
 <nav class="navbar navbar-inverse navbar-static-top">
-    <div class="container-fluid">
+      <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">
-                <img [src]="ctlLogo" alt="CenturyLink" />
-            </a>
-            <a class="navbar-service" href="/">Control Portal</a>
+          <button type="button" class="navbar-toggle collapsed" aria-expanded="true">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">
+            <img src="../../assets/img/logo-centurylink.png" alt="CenturyLink">
+          </a>
         </div>
+    
+    <!-- Support and sign out links -->
+        <div class="collapse navbar-collapse" aria-expanded="true">
+          <ul class="nav navbar-nav navbar-right navbar-account">
+            <li>
+              <a href="#" role="button" aria-expanded="false"><svg class="cyclops-icon support"><use xlink:href="#icon-migrate"></use></svg> Log In</a>
+            </li>
+            <li>
+              <a href="#" role="button" aria-expanded="false"><svg class="cyclops-icon support"><use xlink:href="#icon-plus-circle"></use></svg> Sign up</a>
+            </li>
+            <li class="dropdown">
+              <a href="#" role="button" aria-expanded="false"><span class="sr-only">Cart</span><svg class="cyclops-icon support"><use xlink:href="#icon-shopping-cart"></use></svg> </a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li><a href="#">Open Support Ticket</a></li>
+                <li><a href="#">Chat with Support</a></li>
+                <li><a href="https://www.ctl.io/knowledge-base">Knowledge Base</a></li>
+                <li><a href="https://www.ctl.io/api-docs">API Documentation</a></li>
+                <li><p class="dropdown-text">1.877.388.4373</p></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Submit a Feature Idea</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
 
-        <!-- Support and sign out links -->
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right navbar-account">
-                <li class="dropdown">
-                    <a href="#" role="button"><span class="sr-only">help and support links</span><svg class="cyclops-icon support"><use xlink:href='#icon-question-circle' /></svg> <svg class="cyclops-icon" aria-hidden="true"><use xlink:href='#icon-caret-down' /></svg></a>
-                    <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="#">Open Support Ticket</a></li>
-                        <li><a href="#">Chat with Support</a></li>
-                        <li><a href="https://www.ctl.io/knowledge-base">Knowledge Base</a></li>
-                        <li><a href="https://www.ctl.io/api-docs">API Documentation</a></li>
-                        <li>
-                            <p class="dropdown-text">1.877.388.4373</p>
-                        </li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Submit a Feature Idea</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-  						<a href="#" role="button">
-                            {{ (user | async)?.email }}
-                            <svg *ngIf="(user | async)?.id ==0" class="cyclops-icon" aria-hidden="true">
-                                <use xlink:href='#icon-user' />
-                            </svg>
-                            <svg class="cyclops-icon" aria-hidden="true">
-                                <use xlink:href='#icon-caret-down' />
-                                </svg>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-right">
-  							<li *ngIf="(user | async)?.id >0" ><a href="#">Your Profile</a></li>
-  							<li *ngIf="(user | async)?.id >0" (click)="logout()" ><a href="#">Sign Out</a></li>
-                            <li *ngIf="(user | async)?.id ==0" (click)="login()"><a href="#">Sign In</a></li>
-  						</ul>
-  				</li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-</nav>
