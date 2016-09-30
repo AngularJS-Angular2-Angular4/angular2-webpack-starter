@@ -26,7 +26,7 @@ export class CtlHomeComponent {
     let entInfo: EnterpriseInfo = {
       ein: 12345,
       ownTransport: true
-    }
+    };
     this.authService.addUserInfo(entInfo);
   }
 

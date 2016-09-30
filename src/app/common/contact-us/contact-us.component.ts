@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './contact-us.template.html'
 })
 export class ContactUsComponent {
-    
+
 }
