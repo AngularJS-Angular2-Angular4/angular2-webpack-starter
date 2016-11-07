@@ -1,0 +1,17 @@
+.new-list-view-responsive > .new-list-view > li > .list-view-item .currency:hover{
+      background: #3cac30;
+      color: #fff;
+      cursor: pointer;
+}
+
+div .alignMar{
+      margin-top:0px;
+}
+
+div div nav.navbar-local{
+      margin-bottom: 5px;
+}
+
+.pointer-mouse{
+      cursor: pointer;
+    }

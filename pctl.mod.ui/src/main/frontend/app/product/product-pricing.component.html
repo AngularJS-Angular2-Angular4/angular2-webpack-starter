@@ -1,0 +1,85 @@
+<section id="pricing">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1 class="text-success text-center">Pricing</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<nav class="navbar-local">
+					<label class="text-success">Term 
+						<h4 class="text-danger" *ngIf="!showTerm && !selected">
+							<small>Please select Term first</small>
+						</h4>
+					</label>
+					<ul class="nav navbar-nav">
+						<li [class.active]="term === '12'" class="pointer-mouse"><a class="text-lowercase" (click)="onTermClick('12')">12m</a></li>
+						<li [class.active]="term === '24'" class="pointer-mouse"><a class="text-lowercase" (click)="onTermClick('24')">24m</a></li>
+						<li [class.active]="term === '36'" class="pointer-mouse"><a class="text-lowercase" (click)="onTermClick('36')">36m</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="col-sm-6">
+				<!--h4 class="text-right text-success" *ngIf="status.sku === ''"><small>Select product option and transport</small></h4-->
+				<h4 class="text-right text-success" *ngIf="status.sku !== ''"><small>Pricing</small> $ {{currentPrice}} <small>/ mo</small></h4>
+			</div>
+		</div>
+			<h4 class="text-danger alignMar" *ngIf="showTerm"><small>Select product option and transport</small></h4>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="new-list-view-responsive new-list-view-responsive-sm">
+					<div class="new-list-view-header text-center">
+						<h3 class="col col-40">Product Option</h3>
+						<h3 class="col col-30">With My Own Transport</h3>
+						<h3 class="col col-30">With CenturyLink Transport</h3>
+					</div>
+					<ul class="new-list-view">
+						<!-- {{prices | json}} -->
+						<li *ngFor="let variant of prices;let i = index">
+							<div class="list-view-item text-center">
+								<div class="col col-40"><span class="col-header">Account</span>{{variant.name}}
+									<svg class="cyclops-icon md pull-right" id="tool-trigger{{i}}" aria-hidden="true">
+										<use xlink:href='#icon-question-circle' />
+									</svg>
+									<input type="text" id="{{variant.sku}}" hidden="true" value="{{variant.descriptionHtml}}"/>
+								</div>
+								<div class="col col-30 currency" [class.active]="variant.sku === status.sku && 
+									status.mode ==='own'" (click)="onPriceSelection('own',variant.sku,term, variant)"><span class="col-header">With My Own Transport</span>
+									<p>
+										${{getCurrentPrice(term,variant.sku,'own')}}</p>
+								</div>
+								<div class="col col-30 currency" [class.active]="variant.sku === status.sku && 
+									status.mode ==='ctl'" (click)="onPriceSelection('ctl',variant.sku,term, variant)"><span class="col-header">With CenturyLink Transport</span>
+									<p>
+										${{getCurrentPrice(term,variant.sku,'ctl')}}</p>
+								</div>
+							</div>
+						<!--	<div class="list-view-item text-center">
+								<div class="col col-40"><span class="col-header">Account</span>{{variant.name}}
+									<svg class="cyclops-icon md pull-right" aria-hidden="true">
+										<use xlink:href='#icon-question-circle' />
+									</svg>
+								</div>
+								<div class="col col-30" [class.active]="variant.sku === status.sku && 
+									status.mode ==='own'"><span class="col-header">With My Own Transport</span>
+									<p  (click)="onPriceSelection('own',variant.sku, priceList.own, variant)" *ngIf="priceList.term === term">{{ getPrice(variant.sku)}}</p>
+								</div>
+								<div class="col col-30" [class.active]="variant.sku === status.sku && 
+									status.mode ==='ctl'" *ngFor="let priceList of variant.priceList"><span class="col-header">With CenturyLink Transport</span>
+									<p (click)="onPriceSelection('own',variant.sku, priceList.ctl, variant)" *ngIf="priceList.term === term">$ {{priceList.ctl}}</p>
+								</div> 
+							</div>-->
+						</li>
+					</ul>
+				</div>
+				<p *ngIf="term === '12'" class="text-right"><small>*Above prices does not include Taxes and Non recurring charges</small></p>
+				<p *ngIf="term !== '12'" class="text-right"><small>*Above prices does not include Taxes</small></p>
+				<div class="text-center">
+					<button type="button" class="btn btn-primary btn-lg" (click)="nextPage()" [disabled]="!selected"><!--svg class="cyclops-icon" aria-hidden="true"><use xlink:href='#icon-shopping-cart' /></svg--> Build Order</button>
+				</div>
+			</div>
+		</div>
+		<hr>
+	</div>
+</section>

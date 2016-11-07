@@ -1,0 +1,199 @@
+<div class="row">
+	<div class="col-md-12 text-right">
+		<button class="btn btn-primary btn-lg">Batch Upload</button>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-8">
+		<form class="form-horizontal" [formGroup]="myForm" novalidate (ngSubmit)="onSubmit()">
+			<div>
+				<h5 class="section-heading">Service Contact</h5>
+				<div formGroupName="serviceContact" class="form-group">
+					<label for="email" class="col-sm-3 control-label">Email <span class="required-ast">*</span></label>
+					<div class="col-sm-9">
+						<input type="email" class="form-control" id="email" formControlName="email" autofocus> {{ myForm.controls.serviceContact.email
+						| json }}
+						<control-messages [control]="myForm.controls.serviceContact.controls['email']"></control-messages>
+					</div>
+				</div>
+				<div formGroupName="serviceContact" class="form-group">
+					<label for="firstName" class="col-sm-3 control-label">First Name <span class="required-ast">*</span></label>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" id="firstName" formControlName="firstName">
+						<control-messages [control]="myForm.controls.serviceContact.controls['firstName']"></control-messages>
+					</div>
+				</div>
+				<div formGroupName="serviceContact" class="form-group">
+					<label for="lastName" class="col-sm-3 control-label">Last Name <span class="required-ast">*</span></label>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" id="lastName" formControlName="lastName">
+						<control-messages [control]="myForm.controls.serviceContact.controls['lastName']"></control-messages>
+					</div>
+				</div>
+				<div formGroupName="serviceContact" class="form-group">
+					<label for="phoneNumber" class="col-sm-3 control-label">Primary Phone <span class="required-ast">*</span></label>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber">
+						<control-messages [control]="myForm.controls.serviceContact.controls['phoneNumber']"></control-messages>
+					</div>
+				</div>
+			</div>
+			<!-- Service Address Section -->
+			<div>
+				<h5 class="section-heading">Service Address
+					<span class="text-danger" *ngIf="serviceValid && (validation | async)?.serviceValidation?.code === '400'">
+						<ul>
+							<li>{{(validation | async)?.serviceValidation?.message}}</li>
+						</ul>
+					</span>
+				</h5>
+				<div formGroupName="serviceAddress" class="form-group">
+					<label for="locationName" class="col-sm-3 control-label">Location Name <span class="required-ast">*</span></label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="locationName" (blur)="serviceMethod()" formControlName="locationName" #temp1 (keyup)="changeInputOnKeyUp(temp1.id)">
+						<control-messages [control]="myForm.controls.serviceAddress.controls['locationName']"></control-messages>
+					</div>
+				</div>
+				<div formGroupName="serviceAddress" class="form-group">
+					<label for="addressLine" class="col-sm-3 control-label">Address Line 1 <span class="required-ast">*</span></label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="addressLine" (blur)="serviceMethod()" formControlName="addressLine" #temp2 (keyup)="changeInputOnKeyUp(temp2.id)">
+						<control-messages [control]="myForm.controls.serviceAddress.controls['addressLine']"></control-messages>
+					</div>
+				</div>
+				<div formGroupName="serviceAddress" class="form-group">
+					<label for="street" class="col-sm-3 control-label">Address Line 2</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="street" formControlName="street" #temp3 (keyup)="changeInputOnKeyUp(temp3.id)">
+						<control-messages [control]="myForm.controls.serviceAddress.controls['street']"></control-messages>
+					</div>
+				</div>
+				<div formGroupName="serviceAddress" class="form-group">
+					<label for="country" class="col-sm-3 control-label">Country <span class="required-ast">*</span></label>
+					<div class="col-sm-9">
+						<select class="form-control" id="country" (blur)="serviceMethod()" formControlName="country">
+							<option *ngFor="let country of countries" [selected]="selectedDefault === 0" [value]="country.countryCode" >{{country.countryName}}</option> 
+                        </select>
+						<control-messages [control]="myForm.controls.serviceAddress.controls['country']"></control-messages>
+					</div>
+				</div>
+				<div formGroupName="serviceAddress" class="form-group">
+					<label for="city" class="col-sm-3 control-label">City <span class="required-ast">*</span></label>
+					<div class="col-sm-9">
+						<div class="row">
+							<div class="col-sm-5">
+								<input type="text" class="form-control" id="city" (blur)="serviceMethod()" formControlName="city" #temp4 (keyup)="changeInputOnKeyUp(temp4.id)">
+								<control-messages [control]="myForm.controls.serviceAddress.controls['city']"></control-messages>
+							</div>
+							<div class="col-sm-7">
+								<label for="horizontalFormPassword" class="col-sm-3 control-label">State <span class="required-ast">*</span></label>
+								<div class="col-sm-9">
+									<div class="row">
+										<select class="form-control" id="state" (blur)="serviceMethod()" formControlName="state" #temp5 (click)="changeInputOnChange(temp5.id)">
+                                            <option [selected]="selectedDefault===0" value="">&nbsp;- Select -</option>
+                                            <option *ngFor="let state of states" [value]="state.stateCode" >{{state.stateName}}</option> 
+                                        </select>
+										<control-messages [control]="myForm.controls.serviceAddress.controls['state']"></control-messages>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div formGroupName="serviceAddress" class="form-group">
+					<label for="zipCode" class="col-sm-3 control-label">Zip Code <span class="required-ast">*</span></label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" id="zipCode" (blur)="serviceMethod()" formControlName="zipCode"  #temp6 (keyup)="changeInputOnKeyUp(temp6.id)">
+						<control-messages [control]="myForm.controls.serviceAddress.controls['zipCode']"></control-messages>
+					</div>
+				</div>
+			</div>
+			<!-- Shipping Address Section -->
+			<div>
+				<h5 class="section-heading">Shipping Address
+					<span class="text-danger" *ngIf="shippingValid && (validation | async)?.shippingValidation?.code === '400'">
+						<ul>
+							<li>{{(validation | async)?.shippingValidation?.message}}</li>
+						</ul>
+					</span>
+				</h5>
+				<div formGroupName="shippingAddress" class="form-group">
+					<label for="checkAddress" class="col-sm-3 control-label sr-only">Select Address</label>
+					<div class="col-sm-9 col-sm-push-3">
+						<div class="checkbox">
+							<label>
+                                    <input type="checkbox" value="" formControlName="checkAddress" (click)="onClickCheckAddress($event.target.checked)" /> Same as Service Address 
+                            </label>
+						</div>
+					</div>
+				</div>
+				<div formGroupName="shippingAddress" class="form-group">
+					<label for="locationNameS" class="col-sm-3 control-label">Location Name <span class="required-ast">*</span></label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="locationNameS" (blur)="shippingMethod()" [value]="myForm.value.shippingAddress.locationName" formControlName="locationName" [attr.disabled]="myForm.value.shippingAddress.checkAddress?true:null">
+						<control-messages [control]="myForm.controls.shippingAddress.controls['locationName']"></control-messages>
+					</div>
+				</div>
+				<div formGroupName="shippingAddress" class="form-group">
+					<label for="addressLineS" class="col-sm-3 control-label">Address Line 1 <span class="required-ast">*</span></label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="addressLineS" (blur)="shippingMethod()" formControlName="addressLine" [value]="myForm.value.shippingAddress.addressLine" [attr.disabled]="myForm.value.shippingAddress.checkAddress?true:null">
+						<control-messages [control]="myForm.controls.shippingAddress.controls['addressLine']"></control-messages>
+					</div>
+				</div>
+				<div formGroupName="shippingAddress" class="form-group">
+					<label for="streetS" class="col-sm-3 control-label">Address Line 2</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="streetS" formControlName="street" [value]="myForm.value.shippingAddress.street" [attr.disabled]="myForm.value.shippingAddress.checkAddress?true:null">
+						<control-messages [control]="myForm.controls.shippingAddress.controls['street']"></control-messages>
+					</div>
+				</div>
+				<div formGroupName="shippingAddress" class="form-group">
+					<label for="countryS" class="col-sm-3 control-label">Country <span class="required-ast">*</span></label>
+					<div class="col-sm-9">
+						<select class="form-control" id="countryS" (blur)="shippingMethod()" formControlName="country" [attr.disabled]="myForm.value.shippingAddress.checkAddress?true:null">
+                            <option *ngFor="let country of countries" [selected]="selectedDefault === 0" [value]="country.countryCode" >{{country.countryName}}</option>  
+                        </select>
+						<control-messages [control]="myForm.controls.shippingAddress.controls['country']"></control-messages>
+					</div>
+				</div>
+				<div formGroupName="shippingAddress" class="form-group">
+					<label for="city" class="col-sm-3 control-label">City <span class="required-ast">*</span></label>
+					<div class="col-sm-9">
+						<div class="row">
+							<div class="col-sm-5">
+								<input type="text" class="form-control" id="city" (blur)="shippingMethod()" formControlName="city" [value]="myForm.value.shippingAddress.city" [attr.disabled]="myForm.value.shippingAddress.checkAddress?true:null">
+								<control-messages [control]="myForm.controls.shippingAddress.controls['city']"></control-messages>
+							</div>
+							<div class="col-sm-7">
+								<label for="stateS" class="col-sm-3 control-label">State <span class="required-ast">*</span></label>
+								<div class="col-sm-9">
+									<div class="row">
+										<select class="form-control" id="stateS" (blur)="shippingMethod()" formControlName="state" [value]="myForm.value.shippingAddress.state" [attr.disabled]="myForm.value.shippingAddress.checkAddress?true:null">
+                                            <option [selected]="selectedDefault.id == '0'" value="">&nbsp;- Select -</option>
+                                            <option *ngFor="let state of states" [value]="state.stateCode">{{state.stateName}}</option>
+                                        </select>
+										<control-messages [control]="myForm.controls.shippingAddress.controls['state']"></control-messages>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div formGroupName="shippingAddress" class="form-group">
+					<label for="zipCodeS" class="col-sm-3 control-label">Zip Code <span class="required-ast">*</span></label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" id="zipCodeS" (blur)="shippingMethod()" formControlName="zipCode" [value]="myForm.value.shippingAddress.zipCode" [attr.disabled]="myForm.value.shippingAddress.checkAddress?true:null">
+						<control-messages [control]="myForm.controls.shippingAddress.controls['zipCode']"></control-messages>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-3 col-sm-9">
+					<button type="submit" *ngIf="data.id" class="btn btn-primary btn-lg" [disabled]="!myForm.valid">Update Location</button>
+					<button type="submit" *ngIf="!data.id" class="btn btn-primary btn-lg" [disabled]="!myForm.valid">Add Location</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

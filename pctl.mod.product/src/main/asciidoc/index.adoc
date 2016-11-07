@@ -1,0 +1,27 @@
+include::intro.adoc[]
+
+[[resources]]
+= Resources
+
+[[resources-Products]]
+== Products
+The Product resource is used to list.
+
+
+=======
+
+[[resource-product-list]]
+=== Listing products
+A `GET` request lists all of the service's products.
+
+include::{snippets}/list-products/response-fields.adoc[]
+
+==== Example request
+
+include::{snippets}/list-products/curl-request.adoc[]
+
+==== Example response
+
+include::{snippets}/list-products/http-response.adoc[]
+
+[[resource-product-create]]
