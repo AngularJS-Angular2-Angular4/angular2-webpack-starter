@@ -71,7 +71,7 @@ interface Es6PromiseLoader {
   (id: string): (exportName?: string) => Promise<any>;
 }
 
-type FactoryEs6PromiseLoader = () => Es6PromiseLoader;
+/*type FactoryEs6PromiseLoader = () => Es6PromiseLoader;
 type FactoryPromise = () => Promise<any>;
 
 type AsyncRoutes = {
@@ -85,7 +85,7 @@ type AsyncRoutes = {
 type IdleCallbacks = Es6PromiseLoader |
                              Function |
               FactoryEs6PromiseLoader |
-                       FactoryPromise ;
+                       FactoryPromise ;*/
 
 interface WebpackModule {
   hot: {
